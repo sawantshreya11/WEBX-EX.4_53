@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Submit Form</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background: #f4f4f4; padding: 20px; }
+        .container { max-width: 400px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        form { display: flex; flex-direction: column; }
+        label { margin: 5px 0; font-weight: bold; }
+        input { padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px; }
+        input[type="submit"] { background: #008CBA; color: white; cursor: pointer; }
+        input[type="submit"]:hover { background: #005f73; }
+        .error { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Submit Form</h2>
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% elif name and age %}
+            <p><strong>Form Submitted</strong></p>
+            <p>Name: {{ name }}</p>
+            <p>Age: {{ age }}</p>
+        {% else %}
+            <form method="post">
+                <label>Name:</label> <input type="text" name="name" required>
+                <label>Age:</label> <input type="number" name="age" min="0" required>
+                <input type="submit" value="Submit">
+            </form>
+        {% endif %}
+        <a href="{{ url_for('home') }}">Back to Home</a>
+    </div>
+</body>
+</html>
